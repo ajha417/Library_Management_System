@@ -3,6 +3,8 @@ package com.learning.aj.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.util.Date;
+
 @Entity
 @Table(name = "books")
 @Data
@@ -20,7 +22,13 @@ public class Book {
     @Column(name = "is_available")
     private boolean availability;
     private String publisher;
+    @Column(name = "publication_date")
+    private Date publicationDate;
+
     private double price;
     private String edition;
     private String genre;
+    @ManyToOne
+    @JoinColumn(name = "author_id")
+    private Author author;
 }

@@ -8,7 +8,7 @@ import java.util.List;
 @Entity
 @Table(name = "users")
 @Data
-public class User {
+public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
@@ -19,6 +19,6 @@ public class User {
     private String phoneNumber;
     private String email;
     private String role;
-    @OneToMany
-    private List<Book> borrowedBooks;
+    @OneToMany(mappedBy = "users")
+    private List<BorrowingHistory> borrowingHistories;
 }
