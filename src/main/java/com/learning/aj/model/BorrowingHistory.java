@@ -1,6 +1,6 @@
 package com.learning.aj.model;
 
-import com.learning.aj.EStatus;
+import com.learning.aj.enums.EStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 

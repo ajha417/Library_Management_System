@@ -1,4 +1,4 @@
-package com.learning.aj;
+package com.learning.aj.enums;
 
 public enum EStatus {
     AVAILABLE,
