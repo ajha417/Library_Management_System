@@ -3,6 +3,7 @@ package com.learning.aj.controller;
 import com.learning.aj.dto.RegisterRequest;
 import com.learning.aj.model.Users;
 import com.learning.aj.repository.UserRepository;
+import com.learning.aj.service.EmailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,8 @@ public class AuthenticationController {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private EmailService emailService;
 
 
     @PostMapping("/register")
@@ -40,7 +43,11 @@ public class AuthenticationController {
             user.setRole(registerRequest.getRole());
             user.setBorrowingHistories(new ArrayList<>());
             userRepository.save(user);
+
+            //send welcome email
+            emailService.sendEmail(user.getEmail(), user.getName());
             responseEntity = ResponseEntity.ok("User registered successfully");
+            log.info("User registered successfully");
         } catch (Exception e) {
             log.error("Error while registering user", e);
             responseEntity = ResponseEntity.badRequest().body("Error while registering user:" + e.getMessage());
