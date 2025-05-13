@@ -1,7 +1,7 @@
 package com.learning.aj.service;
 
 import com.learning.aj.model.Users;
-import com.learning.aj.repo.UserRepository;
+import com.learning.aj.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -21,8 +21,8 @@ public class CustomUserDetailService implements UserDetailsService {
     private UserRepository userRepository;
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Users user = userRepository.findByUserName(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
-        return new User(user.getEmail(), user.getPassword(), getAuthorities(user.getRole()));
+        Users user = userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return new User(user.getEmail(), user.getPassword(), getAuthorities(user.getRole().name()));
     }
 
     private List<GrantedAuthority> getAuthorities(String role) {

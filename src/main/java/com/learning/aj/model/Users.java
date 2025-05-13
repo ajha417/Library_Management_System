@@ -1,5 +1,6 @@
 package com.learning.aj.model;
 
+import com.learning.aj.enums.ERole;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -18,20 +19,20 @@ public class Users {
     private String phoneNumber;
     private String email;
     private String password;
-    private String role;
+    private ERole eRole;
     @OneToMany(mappedBy = "users")
     private List<BorrowingHistory> borrowingHistories;
 
     public Users() {
     }
 
-    public Users(int id, String name, String phoneNumber, String email, String password, String role, List<BorrowingHistory> borrowingHistories) {
+    public Users(int id, String name, String phoneNumber, String email, String password, ERole role, List<BorrowingHistory> borrowingHistories) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.eRole = role;
         this.borrowingHistories = borrowingHistories;
     }
 
@@ -75,12 +76,12 @@ public class Users {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public ERole getRole() {
+        return eRole;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRole(ERole role) {
+        this.eRole = role;
     }
 
     public List<BorrowingHistory> getBorrowingHistories() {

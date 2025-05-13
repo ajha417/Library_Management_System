@@ -1,4 +1,4 @@
-package com.learning.aj.repo;
+package com.learning.aj.repository;
 
 import com.learning.aj.model.BorrowingHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
